@@ -77,10 +77,6 @@ Router.route('/questions', {where: 'server'})
 Router.route('/scores',{where: 'server'})
     .get(function(){
         var response = User.find({_id: this.params.query._id}).fetch()[0]["scores"];
-        var values = [];
-        for (var i in response) {
-          values.push([response.score][response.datetime])
-        }
         this.response.setHeader('Content-Type','application/json');
         this.response.end(JSON.stringify(response));
     })
